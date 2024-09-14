@@ -6,13 +6,15 @@ import java.util.Random;
 import javax.servlet.ServletContext;
 import mundo.Valoracion;
 
-public class GestionarValoracion implements Serializable  {
+public class GestionarValoracion implements Serializable {
 
     private final String PATH = "./data/ListaValoraciones.dat";
 
     /**
-     * Método para obtener la dirección path donde se encuentra serializado el archivo de valoraciones
-     * @return 
+     * Método para obtener la dirección path donde se encuentra serializado el
+     * archivo de valoraciones
+     *
+     * @return
      */
     public String getPATH() {
         return PATH;
@@ -22,10 +24,10 @@ public class GestionarValoracion implements Serializable  {
     public GestionarValoracion() {
     }
 
-    
     /**
      * Método para generar un id de 4 números
-     * @return 
+     *
+     * @return
      */
     public String generarId() {
         Random random = new Random();
@@ -35,6 +37,7 @@ public class GestionarValoracion implements Serializable  {
 
     /**
      * Método para agregar una nueva valoración con ID generado
+     *
      * @param context
      * @param nombre
      * @param fecha
@@ -59,6 +62,40 @@ public class GestionarValoracion implements Serializable  {
         misValoraciones.add(miValoracion);
 
         // Serializar la lista actualizada
-      ser.serializar(misValoraciones, context, PATH);
+        ser.serializar(misValoraciones, context, PATH);
     }
+
+    /**+
+     * Metodo para eliminar una valoracion
+     * @param id
+     * @param context
+     * @return 
+     */
+    public boolean eliminarValoracion(String id, ServletContext context) {
+        Serializacion ser = new Serializacion();
+
+        // Deserializar la lista de valoraciones
+        ArrayList<Valoracion> misValoraciones = ser.desArchivoSer(context, PATH);
+
+        // Verificar si la lista es null o está vacía
+        if (misValoraciones == null || misValoraciones.isEmpty()) {
+            System.err.println("No hay valoraciones para eliminar.");
+            return false;
+        }
+
+        // Buscar la valoración con el ID especificado y eliminarla
+        boolean eliminado = misValoraciones.removeIf(valoracion -> valoracion.getId().equals(id));
+
+        // Verificar si se eliminó la valoración
+        if (eliminado) {
+            // Serializar la lista actualizada
+            ser.serializar(misValoraciones, context, PATH);
+            System.out.println("Valoración con ID " + id + " eliminada exitosamente.");
+            return true;
+        } else {
+            System.err.println("Valoración con ID " + id + " no encontrada.");
+            return false;
+        }
+    }
+
 }
