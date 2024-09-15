@@ -7,19 +7,19 @@
             <div class="card card-body">
                 <form action="SvAniadirValoracion" method="POST">
                     <label>Nombre:</label>
-                    <input class="form-control" type="text" id="nombre" name="nombre"><br>
+                    <input class="form-control" type="text" id="nombre" name="nombre" required><br>
                     <label>Fecha:</label>
-                    <input class="form-control" type="date" id="fecha" name="fecha"><br>
+                    <input class="form-control" type="date" id="fecha" name="fecha" required><br>
                     <label>Correo:</label>
-                    <input class="form-control" type="text" id="correo" name="correo"><br>
+                    <input class="form-control" type="text" id="correo" name="correo" required><br>
                     <label>Negocio:</label>
-                    <select class="form-control" name="negocio">
+                    <select class="form-control" name="negocio" required>
                         <option value="0">Seleccione</option>
                         <option value="1">Mr.Pollo</option>
                         <option value="2">LA MERCED</option>
                     </select><br>
                     <label for="puntuacion">Puntuación:</label>
-                    <select class="form-control" name="puntuacion">
+                    <select class="form-control" name="puntuacion" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

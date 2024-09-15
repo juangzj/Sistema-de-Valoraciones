@@ -2,6 +2,7 @@ com\mycompany\valoraciones_3\resources\JakartaEE8Resource.class
 mundo\Serializacion.class
 Servlets\SvAniadirValoracion.class
 mundo\Valoracion.class
+Servlets\SvEditarValoracion.class
 com\mycompany\valoraciones_3\JakartaRestConfiguration.class
 mundo\GestionarValoracion.class
 Servlets\SvEliminarValoracion.class

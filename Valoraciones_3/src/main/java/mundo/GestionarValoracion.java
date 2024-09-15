@@ -65,11 +65,13 @@ public class GestionarValoracion implements Serializable {
         ser.serializar(misValoraciones, context, PATH);
     }
 
-    /**+
+    /**
+     * +
      * Metodo para eliminar una valoracion
+     *
      * @param id
      * @param context
-     * @return 
+     * @return
      */
     public boolean eliminarValoracion(String id, ServletContext context) {
         Serializacion ser = new Serializacion();
@@ -96,6 +98,55 @@ public class GestionarValoracion implements Serializable {
             System.err.println("Valoración con ID " + id + " no encontrada.");
             return false;
         }
+    }
+
+    /**
+     * Metodo para editar una valoracion
+     *
+     * @param id
+     * @param nuevoNombre
+     * @param nuevaFecha
+     * @param nuevoCorreo
+     * @param nuevoNegocio
+     * @param nuevaPuntuacion
+     * @param context
+     * @return
+     */
+
+    public boolean editarValoracion(String id, String nuevoNombre, String nuevaFecha, String nuevoCorreo, String nuevoNegocio, String nuevaPuntuacion, ServletContext context) {
+        Serializacion ser = new Serializacion();
+
+        // Deserializar la lista de valoraciones desde el archivo
+        ArrayList<Valoracion> misValoraciones = ser.desArchivoSer(context, PATH);
+
+        if (misValoraciones == null) {
+            System.err.println("Error: la lista de valoraciones no pudo ser deserializada.");
+            return false;
+        }
+
+        // Buscar la valoración por ID y editarla
+        boolean encontrada = false;
+        for (Valoracion valoracion : misValoraciones) {
+            if (valoracion.getId().equals(id)) {
+                // Actualizar los campos de la valoración
+                valoracion.setNombre(nuevoNombre);
+                valoracion.setFecha(nuevaFecha);
+                valoracion.setCorreo(nuevoCorreo);
+                valoracion.setNegocio(nuevoNegocio);
+                valoracion.setPuntuacion(nuevaPuntuacion);
+                encontrada = true;
+                break;
+            }
+        }
+
+        if (!encontrada) {
+            System.err.println("Error: No se encontró la valoración con ID: " + id);
+            return false;
+        }
+
+        // Serializar la lista actualizada de nuevo en el archivo
+        ser.serializar(misValoraciones, context, PATH);
+        return true; // Retornar true para indicar que la edición fue exitosa
     }
 
 }
