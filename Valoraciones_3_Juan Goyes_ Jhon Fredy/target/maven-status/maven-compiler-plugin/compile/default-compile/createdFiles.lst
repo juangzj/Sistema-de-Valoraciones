@@ -4,5 +4,6 @@ Servlets\SvAniadirValoracion.class
 mundo\Valoracion.class
 Servlets\SvEditarValoracion.class
 com\mycompany\valoraciones_3\JakartaRestConfiguration.class
+Servlets\SvVerValoracion.class
 mundo\GestionarValoracion.class
 Servlets\SvEliminarValoracion.class

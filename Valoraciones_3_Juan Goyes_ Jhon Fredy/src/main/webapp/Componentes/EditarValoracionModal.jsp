@@ -15,19 +15,19 @@
 
 
                     <label>Nombre:</label>
-                    <input class="form-control" type="text" id="nombre" name="nombreEditar" required><br>
+                    <input class="form-control" type="text" id="nombreEditar" name="nombreEditar" required><br>
                     <label>Fecha:</label>
-                    <input class="form-control" type="date" id="fecha" name="fechaEditar" required><br>
+                    <input class="form-control" type="date" id="fechaEditar" name="fechaEditar" required><br>
                     <label>Correo:</label>
-                    <input class="form-control" type="text" id="correo" name="correoEditar" required><br>
+                    <input class="form-control" type="text" id="correoEditar" name="correoEditar" required><br>
                     <label>Negocio:</label>
-                    <select class="form-control" name="negocioEditar" required>
+                    <select class="form-control" id="negocioEditar" name="negocioEditar" required>
                         <option value="0">Seleccione</option>
                         <option value="1">Mr.Pollo</option>
                         <option value="2">LA MERCED</option>
                     </select><br>
                     <label for="puntuacion">Puntuación:</label>
-                    <select class="form-control" name="puntuacionEditar" required>
+                    <select class="form-control" id="puntuacionEditar" name="puntuacionEditar" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -51,6 +51,30 @@
         </div>
     </div>
 </div>   
+
+<script>
+    
+    $(document).ready(function(){
+    // Manejar el evento cuando se hace clic en el enlace de la modal
+    $('#exampleModalEditar').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Botón que abrió la modal
+        var nombre = button.data('nombre');
+        var fecha = button.data('fecha');
+        var correo = button.data('correo');
+        var negocio = button.data('negocio');
+        var puntuacion = button.data('puntuacion');
+        
+        // Actualizar el contenido de la modal
+        var modal = $(this);
+        modal.find('#nombreEditar').val(nombre);
+        modal.find('#fechaEditar').val(fecha);
+        modal.find('#correoEditar').val(correo);
+        modal.find('#negocioEditar').val(negocio);
+        modal.find('#puntuacionEditar').val(puntuacion);
+    });
+});
+
+</script>
 <!-- Script para obtener el id de la valoracion que se va a editar y despues enviarla por ajaxx al servlet -->
 <script>
     // Captur clic y mandar el id de la  valoracion que se va a editar 
